@@ -21,6 +21,16 @@ namespace CampgroundReservations.Tests.DAO
             // Assert
             Assert.AreEqual(ReservationId + 1, returnedId);
         }
+        [TestMethod]
+        public void UpcomingReservationHappyPathTest()
+        {
+            ReservationSqlDAO dao = new ReservationSqlDAO(ConnectionString);
 
+            IList<Reservation> reservations = dao.UpcomingReservations(ParkId);
+
+            Assert.AreEqual(2, reservations.Count);
+
+
+        }
     }
 }

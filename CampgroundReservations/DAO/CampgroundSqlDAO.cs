@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices.WindowsRuntime;
 using CampgroundReservations.Models;
 
 namespace CampgroundReservations.DAO
@@ -16,7 +17,28 @@ namespace CampgroundReservations.DAO
 
         public IList<Campground> GetCampgroundsByParkId(int parkId)
         {
-            throw new NotImplementedException();
+            List<Campground> campgrounds = new List<Campground>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand sqlCommand = new SqlCommand("Select * from campground where park_id = @parkId ", connection);
+                    sqlCommand.Parameters.AddWithValue("@parkId", parkId);
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                      campgrounds.Add(GetCampgroundFromReader(reader));
+                      
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new NotImplementedException();
+
+            }
+            return campgrounds;
         }
 
         private Campground GetCampgroundFromReader(SqlDataReader reader)

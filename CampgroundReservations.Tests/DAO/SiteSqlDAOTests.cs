@@ -21,6 +21,16 @@ namespace CampgroundReservations.Tests.DAO
             // Assert
             Assert.AreEqual(2, sites.Count);
         }
+        [TestMethod]
+        public void AvilableSitesHappyPathTest()
+        {
+            SiteSqlDAO dao = new SiteSqlDAO(ConnectionString);
+
+            IList<Site> sites = dao.AvilableSites(ParkId);
+            
+            Assert.AreEqual(2, sites.Count);
+
+        }
 
     }
 }

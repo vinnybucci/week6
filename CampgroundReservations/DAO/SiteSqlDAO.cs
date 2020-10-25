@@ -32,7 +32,7 @@ namespace CampgroundReservations.DAO
             }
             catch (Exception)
             {
-            throw new NotImplementedException();
+                throw;
             }
             return sites;
         }
@@ -52,7 +52,7 @@ namespace CampgroundReservations.DAO
                     {
                         sites.Add(GetSiteFromReader(reader));
                     }
-                
+
                 }
             }
             catch (Exception)

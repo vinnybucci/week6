@@ -28,14 +28,14 @@ namespace CampgroundReservations.DAO
                     sqlCommand.Parameters.AddWithValue("@name", name);
                     sqlCommand.Parameters.AddWithValue("@from_date", fromDate);
                     sqlCommand.Parameters.AddWithValue("@to_date", toDate);
-                    
+
                     int createdReservation = Convert.ToInt32(sqlCommand.ExecuteScalar());
                     return createdReservation;
                 }
             }
             catch (Exception)
             {
-                throw new NotImplementedException();
+                throw;
 
             }
         }

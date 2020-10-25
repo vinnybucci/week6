@@ -28,14 +28,14 @@ namespace CampgroundReservations.DAO
                     SqlDataReader reader = sqlCommand.ExecuteReader();
                     while (reader.Read())
                     {
-                      campgrounds.Add(GetCampgroundFromReader(reader));
-                      
+                        campgrounds.Add(GetCampgroundFromReader(reader));
+
                     }
                 }
             }
             catch (Exception)
             {
-                throw new NotImplementedException();
+                throw;
 
             }
             return campgrounds;
